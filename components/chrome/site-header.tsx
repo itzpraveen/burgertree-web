@@ -16,7 +16,6 @@ const NAV = [
 ]
 
 export function SiteHeader() {
-  const [solid, setSolid] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
@@ -24,7 +23,6 @@ export function SiteHeader() {
 
   useEffect(() => {
     const off = onScroll((s) => {
-      setSolid(s.y > 24)
       // Hide on the way down, reveal on the way up — but never near the top,
       // and never while the mobile sheet is open.
       const goingDown = s.y > lastY.current
@@ -54,22 +52,21 @@ export function SiteHeader() {
   return (
     <header
       className={clsx(
-        'fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-500',
-        '[transition-timing-function:var(--ease-out-expo)]',
+        'fixed inset-x-0 top-0 z-50 border-b border-char/20 bg-marigold text-char',
+        'transition-transform duration-500 [transition-timing-function:var(--ease-out-expo)]',
         hidden && !open ? '-translate-y-full' : 'translate-y-0',
-        solid || open
-          ? 'border-b border-[var(--line)] bg-char/85 backdrop-blur-xl'
-          : 'border-b border-transparent',
       )}
       style={{ height: 'var(--nav-h)' }}
     >
       <div className="shell flex h-full items-center justify-between gap-6">
+        {/* The mark is sized off the bar, not the other way round: it fills
+            the height minus a fixed pad, so it can never be squeezed again. */}
         <Link
           href="/"
           aria-label="Burger Tree, home"
-          className="shrink-0 transition-opacity hover:opacity-70"
+          className="flex h-full shrink-0 items-center py-4 transition-opacity hover:opacity-70 lg:py-5 [&_img]:h-full [&_img]:w-auto"
         >
-          <Logo width={78} priority />
+          <Logo width={96} priority dark />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -82,13 +79,13 @@ export function SiteHeader() {
                 aria-current={active ? 'page' : undefined}
                 className={clsx(
                   'ticket relative px-4 py-3 transition-colors',
-                  active ? 'text-marigold' : 'text-cream-dim hover:text-cream',
+                  active ? 'text-char' : 'text-char/75 hover:text-char',
                 )}
               >
                 {n.label}
                 <span
                   className={clsx(
-                    'absolute inset-x-4 bottom-2 h-px origin-left bg-marigold transition-transform duration-500',
+                    'absolute inset-x-4 bottom-2 h-px origin-left bg-char transition-transform duration-500',
                     '[transition-timing-function:var(--ease-out-expo)]',
                     active ? 'scale-x-100' : 'scale-x-0',
                   )}
@@ -101,7 +98,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <a
             href={`tel:${CONTACT.mainPhoneHref}`}
-            className="ticket hidden rounded-full bg-marigold px-5 py-3 text-char transition-colors hover:bg-marigold-hi sm:block"
+            className="ticket hidden rounded-full bg-char px-5 py-3 text-marigold transition-opacity hover:opacity-85 sm:block"
           >
             Call to order
           </a>
@@ -111,20 +108,20 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="ticket -mr-2 flex items-center gap-2 p-2 md:hidden"
+            className="ticket -mr-2 flex items-center gap-2 p-2 text-char md:hidden"
           >
             {open ? 'Close' : 'Menu'}
             <span className="relative block h-3 w-4" aria-hidden>
               <span
                 className={clsx(
-                  'absolute left-0 h-px w-full bg-cream transition-all duration-400',
+                  'absolute left-0 h-px w-full bg-char transition-all duration-400',
                   '[transition-timing-function:var(--ease-out-expo)]',
                   open ? 'top-1.5 rotate-45' : 'top-0',
                 )}
               />
               <span
                 className={clsx(
-                  'absolute left-0 h-px w-full bg-cream transition-all duration-400',
+                  'absolute left-0 h-px w-full bg-char transition-all duration-400',
                   '[transition-timing-function:var(--ease-out-expo)]',
                   open ? 'top-1.5 -rotate-45' : 'top-3',
                 )}
@@ -138,14 +135,14 @@ export function SiteHeader() {
       <div
         id="mobile-nav"
         hidden={!open}
-        className="border-t border-[var(--line)] bg-char md:hidden"
+        className="border-t border-char/20 bg-marigold md:hidden"
       >
         <nav aria-label="Primary" className="shell flex flex-col py-4">
           {NAV.map((n, i) => (
             <Link
               key={n.href}
               href={n.href}
-              className="display-md border-b border-[var(--line)] py-5 text-cream last:border-b-0"
+              className="display-md border-b border-char/20 py-5 text-char last:border-b-0"
               style={{ transitionDelay: `${i * 40}ms` }}
             >
               {n.label}
@@ -153,7 +150,7 @@ export function SiteHeader() {
           ))}
           <a
             href={`tel:${CONTACT.mainPhoneHref}`}
-            className="ticket mt-6 rounded-full bg-marigold px-5 py-4 text-center text-char"
+            className="ticket mt-6 rounded-full bg-char px-5 py-4 text-center text-marigold"
           >
             Call to order · {CONTACT.mainPhone}
           </a>

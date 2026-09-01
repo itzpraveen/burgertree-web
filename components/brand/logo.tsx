@@ -21,18 +21,21 @@ export function Logo({
   width = 168,
   priority = false,
   animated = false,
+  /** Black artwork, for when the mark sits on the brand colour. */
+  dark = false,
 }: {
   className?: string
   width?: number
   priority?: boolean
   animated?: boolean
+  dark?: boolean
 }) {
   const height = Math.round((width * 855) / 1000)
 
   if (!animated) {
     return (
       <Image
-        src="/brand/logo-white.png"
+        src={dark ? '/brand/logo-dark.png' : '/brand/logo-white.png'}
         alt="Burger Tree — burgers n' beyond"
         width={width}
         height={height}

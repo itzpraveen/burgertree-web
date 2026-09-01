@@ -35,7 +35,7 @@ export default function StoresPage() {
               <ul className="mt-12 grid gap-x-16 gap-y-14 lg:grid-cols-2">
                 {stores.map((s, i) => (
                   <Reveal as="li" key={s.id} delay={i * 90}>
-                    <article id={s.id} className="scroll-mt-32">
+                    <article id={s.id} className="[scroll-margin-top:calc(var(--nav-h)+2rem)]">
                       <h3 className="display-sm text-marigold">{s.name}</h3>
 
                       <address className="mt-5 not-italic">

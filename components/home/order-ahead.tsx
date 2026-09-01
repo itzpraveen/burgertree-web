@@ -18,7 +18,7 @@ export function OrderAhead() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
           <div>
             <Reveal>
-              <p className="ticket text-char/60">Do not queue</p>
+              <p className="ticket text-char/75">Do not queue</p>
             </Reveal>
             <Reveal delay={80}>
               <h2 className="display-lg mt-6 text-char">Order before you leave</h2>
@@ -36,7 +36,7 @@ export function OrderAhead() {
             <ul className="grid gap-px overflow-hidden rounded-lg bg-char/15 sm:grid-cols-2">
               {STORES.map((s) => (
                 <li key={s.id} className="bg-marigold p-7">
-                  <p className="ticket-sm text-char/55">{s.city}</p>
+                  <p className="ticket-sm text-char/75">{s.city}</p>
                   <p className="display-sm mt-3 text-char">{s.name}</p>
                   <a
                     href={`tel:${s.phoneHref}`}
@@ -51,7 +51,7 @@ export function OrderAhead() {
                           href={s.delivery.swiggy}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="ticket-sm text-char/70 transition-colors hover:text-char"
+                          className="ticket-sm text-char/75 transition-colors hover:text-char"
                         >
                           Swiggy ↗
                         </a>
@@ -61,7 +61,7 @@ export function OrderAhead() {
                           href={s.delivery.zomato}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="ticket-sm text-char/70 transition-colors hover:text-char"
+                          className="ticket-sm text-char/75 transition-colors hover:text-char"
                         >
                           Zomato ↗
                         </a>
@@ -84,7 +84,7 @@ export function OrderAhead() {
             >
               WhatsApp us
             </a>
-            <span className="ticket-sm text-char/60">{WAIT.peakNote}</span>
+            <span className="ticket-sm text-char/75">{WAIT.peakNote}</span>
           </p>
         </Reveal>
       </div>

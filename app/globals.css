@@ -16,10 +16,12 @@
   --color-olive-deep: #171e11;
   --color-olive-lift: #2f3924;
 
-  /* The one loud voice */
-  --color-marigold: #f5b119;
-  --color-marigold-hi: #ffcc4f;
-  --color-marigold-lo: #c98c0b;
+  /* The one loud voice. Taken from the logo artwork itself
+     (public/brand/logo-mark.svg), not sampled off the printed menu — the
+     lockup is the authority on the brand colour. */
+  --color-marigold: #faa227;
+  --color-marigold-hi: #ffb84e;
+  --color-marigold-lo: #d4831a;
 
   /* Heat. Used only for spice and sear, never for decoration. */
   --color-ember: #d2521b;
@@ -53,9 +55,17 @@
   --line: color-mix(in oklab, var(--color-cream) 14%, transparent);
   --line-strong: color-mix(in oklab, var(--color-cream) 26%, transparent);
   --shell-x: clamp(1.25rem, 5vw, 5.5rem);
-  --nav-h: 68px;
+  /* The wordmark is a near-square stack, so a tall bar is the only way it gets
+     any air. The logo is sized off this, never the other way round. */
+  --nav-h: 84px;
 
   color-scheme: dark;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --nav-h: 104px;
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -257,8 +267,8 @@ html.lenis body {
   z-index: 200;
   transform: translateY(-160%);
   transition: transform 0.25s var(--ease-out-expo);
-  background: var(--color-marigold);
-  color: var(--color-char);
+  background: var(--color-char);
+  color: var(--color-marigold);
   padding: 0.625rem 1rem;
   border-radius: var(--radius-sm);
 }

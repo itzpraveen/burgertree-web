@@ -179,10 +179,10 @@ export function MenuBrowser() {
           <section
             key={section.id}
             id={section.id}
-            className="scroll-mt-40 border-t border-[var(--line)] py-16 lg:py-24"
+            className="border-t border-[var(--line)] py-16 [scroll-margin-top:calc(var(--nav-h)+9rem)] lg:py-24"
           >
             <div className="grid gap-12 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">
-              <div className="lg:sticky lg:top-56 lg:self-start">
+              <div className="lg:sticky lg:self-start lg:[top:calc(var(--nav-h)+9.5rem)]">
                 <p className="ticket-sm text-marigold">{section.kicker}</p>
                 <h2 className="display-md mt-4 text-cream">{section.name}</h2>
                 <FoodImage
