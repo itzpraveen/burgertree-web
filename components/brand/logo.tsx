@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { asset } from '@/lib/base-path'
 import { clsx } from '@/lib/cx'
 
 /**
@@ -35,7 +36,7 @@ export function Logo({
   if (!animated) {
     return (
       <Image
-        src={dark ? '/brand/logo-dark.png' : '/brand/logo-white.png'}
+        src={dark ? asset('/brand/logo-dark.png') : asset('/brand/logo-white.png')}
         alt="Burger Tree — burgers n' beyond"
         width={width}
         height={height}
@@ -65,7 +66,7 @@ export function Logo({
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/brand/logo-white.png"
+            src={asset('/brand/logo-white.png')}
             alt=""
             width={width}
             height={height}
@@ -89,7 +90,7 @@ export function Stamp({
 }) {
   return (
     <Image
-      src="/brand/stamp-white.png"
+      src={asset('/brand/stamp-white.png')}
       alt="Get the best burger ever"
       width={size}
       height={Math.round((size * 351) / 333)}
@@ -101,7 +102,7 @@ export function Stamp({
 export function BurgerGlyph({ className, size = 20 }: { className?: string; size?: number }) {
   return (
     <Image
-      src="/brand/icon-burger.png"
+      src={asset('/brand/icon-burger.png')}
       alt=""
       aria-hidden
       width={size}
@@ -114,7 +115,7 @@ export function BurgerGlyph({ className, size = 20 }: { className?: string; size
 export function HeartGlyph({ className, size = 20 }: { className?: string; size?: number }) {
   return (
     <Image
-      src="/brand/icon-heart.png"
+      src={asset('/brand/icon-heart.png')}
       alt=""
       aria-hidden
       width={size}

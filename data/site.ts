@@ -51,6 +51,16 @@ export const BRAND = {
   ],
 } as const
 
+/**
+ * The origin this build is actually served from.
+ *
+ * `BRAND.site` is a fact about the business and stays put; this is a fact about
+ * the deployment. The GitHub Pages build overrides it so canonicals, the
+ * sitemap and robots.txt describe the URL the visitor is really on rather than
+ * a domain that is serving something else.
+ */
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? BRAND.site
+
 export type Store = {
   id: string
   name: string

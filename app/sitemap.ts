@@ -1,5 +1,9 @@
 import type { MetadataRoute } from 'next'
-import { BRAND } from '@/data/site'
+import { SITE_URL } from '@/data/site'
+
+/* Metadata route handlers are dynamic by default; a static export has
+   nowhere to run them, so they are pinned to build time. */
+export const dynamic = 'force-static'
 
 /** Six pages. Priorities reflect what people actually arrive looking for. */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,7 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/privacy', 0.2, 'yearly'],
   ]
   return pages.map(([path, priority, changeFrequency]) => ({
-    url: `${BRAND.site}${path}`,
+    // trailingSlash is on, so the sitemap advertises the URL that is served.
+    url: `${SITE_URL}${path}/`,
     lastModified: now,
     changeFrequency,
     priority,

@@ -4,7 +4,7 @@ import './globals.css'
 import { SmoothScroll } from '@/components/chrome/smooth-scroll'
 import { SiteHeader } from '@/components/chrome/site-header'
 import { SiteFooter } from '@/components/chrome/site-footer'
-import { BRAND, STORES } from '@/data/site'
+import { BRAND, SITE_URL, STORES } from '@/data/site'
 
 const archivo = Archivo({
   variable: '--font-archivo',
@@ -31,7 +31,7 @@ const DESCRIPTION =
   'Burger Tree is slow on purpose. Nothing is cooked until you order it, on buns baked in our own kitchen — so allow 20–25 minutes, or call ahead and it will be ready when you arrive. Four outlets across Palakkad and Coimbatore.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BRAND.site),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Burger Tree — Slow on purpose',
     template: '%s · Burger Tree',
@@ -70,18 +70,18 @@ function StructuredData() {
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': `${BRAND.site}/#org`,
+        '@id': `${SITE_URL}/#org`,
         name: BRAND.legalName,
-        url: BRAND.site,
+        url: SITE_URL,
         parentOrganization: { '@type': 'Organization', name: BRAND.parent },
         foundingDate: String(BRAND.foundedYear),
         slogan: BRAND.tagline,
       },
       ...STORES.map((s) => ({
         '@type': 'Restaurant',
-        '@id': `${BRAND.site}/stores#${s.id}`,
+        '@id': `${SITE_URL}/stores#${s.id}`,
         name: `${BRAND.name} — ${s.name}`,
-        parentOrganization: { '@id': `${BRAND.site}/#org` },
+        parentOrganization: { '@id': `${SITE_URL}/#org` },
         servesCuisine: ['Burgers', 'American', 'Fast Casual'],
         telephone: s.phone,
         email: s.email,

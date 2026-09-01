@@ -12,6 +12,28 @@ npm run build
 npm run lint
 ```
 
+## Deployment
+
+The site is a static export (`output: 'export'`), published to GitHub Pages by
+`.github/workflows/deploy.yml` on every push to `main`:
+
+    https://itzpraveen.github.io/burgertree-web/
+
+Pages serves the repo from a sub-path, so two values are baked in at build time
+by the workflow:
+
+| Variable | Value | Reaches |
+| --- | --- | --- |
+| `NEXT_PUBLIC_BASE_PATH` | `/burgertree-web` | `basePath`, and `lib/base-path.ts` for every asset URL written by hand |
+| `NEXT_PUBLIC_SITE_URL` | the Pages URL | canonicals, JSON-LD, `sitemap.xml`, `robots.txt` |
+
+Both are empty/default locally, so `npm run dev` still runs at the root. Moving
+to burgertree.in means dropping `NEXT_PUBLIC_BASE_PATH`, pointing
+`NEXT_PUBLIC_SITE_URL` at the domain, and adding a `CNAME` — no code changes.
+
+Note that `next/image` does **not** apply `basePath` to `src`, and neither does
+a hand-built `srcset`; both go through `asset()` in `lib/base-path.ts`.
+
 ## The idea
 
 Burger Tree's own menu says, in capitals, that it is **not** a quick service

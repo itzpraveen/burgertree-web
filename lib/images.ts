@@ -1,4 +1,5 @@
 import manifest from '@/data/images.json'
+import { BASE_PATH } from '@/lib/base-path'
 
 export type FoodImage = {
   key: string
@@ -22,7 +23,7 @@ export const food = (slug: string) => BY_SLUG.get(slug)
  * cost a serverless invocation per variant to produce the same bytes.
  */
 export function srcSet(img: FoodImage, ext: 'avif' | 'webp') {
-  return img.widths.map((w) => `/food/${img.slug}-${w}.${ext} ${w}w`).join(', ')
+  return img.widths.map((w) => `${BASE_PATH}/food/${img.slug}-${w}.${ext} ${w}w`).join(', ')
 }
 
-export const fallbackSrc = (img: FoodImage) => `/food/${img.slug}.jpg`
+export const fallbackSrc = (img: FoodImage) => `${BASE_PATH}/food/${img.slug}.jpg`
