@@ -86,7 +86,7 @@ export function TwentyMinutes() {
             <blockquote className="body-lg mt-9 max-w-xl border-l-2 border-marigold pl-6 text-cream-dim">
               “{BRAND.disclaimer}”
               <footer className="ticket-sm mt-4 text-ash">
-                Printed on every Burger Tree menu
+                Printed on every menu we hand out
               </footer>
             </blockquote>
           </Reveal>

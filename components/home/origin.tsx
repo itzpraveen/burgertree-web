@@ -27,10 +27,10 @@ export function Origin() {
           </Reveal>
           <Reveal delay={160}>
             <p className="body-lg mt-8 max-w-lg text-cream-dim">
-              Burger Tree started in {BRAND.foundedPlace} as a bakery. That is
-              the whole explanation for everything odd about this place — why
-              the buns are ours, why nothing is frozen, and why a burger takes
-              as long as bread does.
+              We started in {BRAND.foundedPlace} as a bakery. That one fact
+              explains everything odd about the way we work — why the buns are
+              ours, why nothing is frozen, and why a burger takes about as long
+              as bread does.
             </p>
           </Reveal>
           <Reveal delay={240}>

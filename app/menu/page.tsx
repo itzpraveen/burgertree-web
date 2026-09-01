@@ -61,9 +61,9 @@ export default function MenuPage() {
       <PageHead
         kicker="Two cities, two price columns"
         title="The menu"
-        lede={`Palakkad prints ${itemCount('Palakkad')} items and Coimbatore ${itemCount(
+        lede={`We print two menus. Palakkad runs to ${itemCount('Palakkad')} items, Coimbatore to ${itemCount(
           'Coimbatore',
-        )}, at different prices. Pick your city and everything below switches to that outlet's own printed column. All prices exclude GST.`}
+        )}, and the same dish can be ₹50 apart between them. Pick your city and every price below switches to that column. All of them exclude GST.`}
       >
         <MenuLegend className="mt-10" />
       </PageHead>

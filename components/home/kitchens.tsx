@@ -70,7 +70,7 @@ export function Kitchens() {
           href="/stores"
           className="ticket mt-14 inline-flex items-center gap-3 text-cream-dim transition-colors hover:text-marigold"
         >
-          Opening hours and contacts
+          Addresses, numbers and directions
           <span aria-hidden>→</span>
         </Link>
       </Reveal>

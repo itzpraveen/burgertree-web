@@ -135,9 +135,9 @@ export function Hero() {
                 On purpose
               </p>
               <p className="body-lg max-w-lg text-balance text-cream-dim">
-                Nothing is cooked before you order it — not the patty, not the
-                sauce, not the bun. That is why it takes {WAIT.label}. It is
-                also why it tastes like this.
+                The buns are baked here in the morning. Everything else — patty,
+                sauce, the lot — starts the moment you order. That is why it
+                takes {WAIT.label}. It is also why it tastes like this.
               </p>
               <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-3">
                 <a
@@ -169,7 +169,7 @@ export function Hero() {
           <div className="shell pb-[max(1.5rem,5svh)]">
             <p className="ticket-sm text-ash">Eight layers</p>
             <p className="display-sm mt-3 max-w-md text-balance text-cream">
-              Every one of them made in our kitchen, after you ordered it.
+              Ours down to the bun. Most of them start when you order.
             </p>
           </div>
         </div>

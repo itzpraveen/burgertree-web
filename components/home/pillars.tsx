@@ -14,7 +14,7 @@ export function Pillars() {
         index={1}
         kicker="How it is made"
         title="Three things we will not outsource"
-        lede="Most burger places buy the bun, buy the sauce and reheat the patty. These are the three parts Burger Tree makes itself, and between them they account for the whole wait."
+        lede="Most burger places buy the bun, buy the sauce and reheat the patty. These are the three we make ourselves, and between them they account for the whole wait."
       />
 
       <ol className="mt-20 grid gap-px overflow-hidden rounded-lg bg-[var(--line)] md:grid-cols-3">

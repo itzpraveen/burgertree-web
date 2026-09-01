@@ -31,7 +31,7 @@ export default function StoryPage() {
       <PageHead
         kicker={`${BRAND.tagline} · since ${BRAND.foundedYear}`}
         title="A bakery that got into burgers"
-        lede="Almost everything strange about the way Burger Tree runs comes from the same fact: it started out baking bread, and it never stopped."
+        lede="Almost everything strange about the way we work comes from one fact: we started out baking bread, and we never stopped."
       />
 
       <section className="shell pb-24">
@@ -61,7 +61,7 @@ export default function StoryPage() {
       <section className="border-y border-[var(--line)] bg-olive-deep py-24 lg:py-32">
         <div className="shell max-w-4xl">
           <Reveal>
-            <p className="ticket text-marigold">In their own words</p>
+            <p className="ticket text-marigold">Page two of our menu</p>
           </Reveal>
           <Reveal delay={80}>
             <blockquote className="mt-9">
@@ -72,7 +72,7 @@ export default function StoryPage() {
                 “{BRAND.story}”
               </p>
               <footer className="ticket-sm mt-8 text-ash">
-                Page two, {BRAND.legalName} menu
+                Printed exactly like this, on every menu we hand out
               </footer>
             </blockquote>
           </Reveal>
@@ -84,7 +84,7 @@ export default function StoryPage() {
           index={1}
           kicker="The three refusals"
           title="What we will not buy in"
-          lede="Every burger chain has to decide which parts of the sandwich it is actually going to make. These are the three Burger Tree kept."
+          lede="Every burger chain has to decide which parts of the sandwich it is actually going to make. These are the three we kept."
         />
 
         <div className="mt-20 flex flex-col gap-20">
