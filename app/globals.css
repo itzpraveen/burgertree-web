@@ -1,26 +1,267 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ *
+ * Burger Tree — design tokens
+ * Colours sampled directly from the client's printed menu artwork.
+ * ------------------------------------------------------------------ */
+
+@theme {
+  /* Ground: a near-black that keeps the menu's olive cast, never pure #000 */
+  --color-char: #12110e;
+  --color-char-2: #1a1814;
+  --color-char-3: #232019;
+
+  /* The deep green the printed menu uses for its large calm panels */
+  --color-olive: #242c1b;
+  --color-olive-deep: #171e11;
+  --color-olive-lift: #2f3924;
+
+  /* The one loud voice */
+  --color-marigold: #f5b119;
+  --color-marigold-hi: #ffcc4f;
+  --color-marigold-lo: #c98c0b;
+
+  /* Heat. Used only for spice and sear, never for decoration. */
+  --color-ember: #d2521b;
+  --color-ember-hi: #f26a2c;
+
+  /* Bun / paper */
+  --color-cream: #efe3ce;
+  --color-cream-dim: #cbc0ad;
+  --color-ash: #8b8578;
+  --color-ash-dim: #605c53;
+
+  --color-veg: #4e9c3f;
+  --color-nonveg: #b2432a;
+
+  /* Type */
+  --font-display: var(--font-archivo-black), "Archivo Black", system-ui, sans-serif;
+  --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-mono: var(--font-martian), "Martian Mono", ui-monospace, monospace;
+
+  /* Motion — one family of curves, used everywhere */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --line: color-mix(in oklab, var(--color-cream) 14%, transparent);
+  --line-strong: color-mix(in oklab, var(--color-cream) 26%, transparent);
+  --shell-x: clamp(1.25rem, 5vw, 5.5rem);
+  --nav-h: 68px;
+
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+
+* {
+  min-width: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  /* Lenis drives scrolling; native smooth-scroll would fight it. */
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-char);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-marigold);
+  color: var(--color-char);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-marigold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ *
+ * Type scale
+ * Display is Archivo Black, set tight and huge. Body is Archivo.
+ * Numerals — times, prices, distances — are Martian Mono, because on this
+ * site numbers are content, not chrome.
+ * ------------------------------------------------------------------ */
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 12.5vw, 13rem);
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7.5vw, 6.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4.2vw, 3.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.022em;
+  text-transform: uppercase;
+}
+
+@utility display-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.1vw, 1.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+@utility body-lg {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+@utility body-base {
+  font-size: clamp(0.95rem, 1.05vw, 1.0625rem);
+  line-height: 1.62;
+  font-weight: 400;
+}
+
+/* The kitchen-ticket voice: small, monospaced, wide-tracked, uppercase. */
+@utility ticket {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility ticket-sm {
+  font-family: var(--font-mono);
+  font-size: 0.5938rem;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility num {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.02em;
+}
+
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--shell-x);
+  max-width: 108rem;
+}
+
+/* Horizontal rails (the menu's section nav) scroll, but a native scrollbar
+   sitting under a sticky toolbar reads as a broken layout. */
+@utility rail {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+@utility rule {
+  border-top: 1px solid var(--line);
+}
+
+/* Hairline grid used behind section headers — the menu's own contour idea,
+   flattened into orthogonals so it reads as a kitchen worktop, not decoration. */
+@utility hatch {
+  background-image: linear-gradient(
+    to right,
+    var(--line) 1px,
+    transparent 1px
+  );
+  background-size: 25% 100%;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reveal primitives — driven by IntersectionObserver, killed by
+ * prefers-reduced-motion.
+ * ------------------------------------------------------------------ */
+
+@utility reveal {
+  opacity: 0;
+  transform: translate3d(0, 1.75rem, 0);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* A skip link that is invisible until focused. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  transform: translateY(-160%);
+  transition: transform 0.25s var(--ease-out-expo);
+  background: var(--color-marigold);
+  color: var(--color-char);
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus-visible {
+  transform: none;
 }
