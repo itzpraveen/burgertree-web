@@ -12,3 +12,14 @@ export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
 /** `/brand/logo.png` → `/burgertree-web/brand/logo.png`. */
 export const asset = (path: string) => `${BASE_PATH}${path}`
+
+/**
+ * The same join for a route rather than a file — used for canonical URLs.
+ *
+ * `metadataBase` is the bare origin, not the sub-path, because Next has
+ * already applied the sub-path to the metadata image routes it generates and
+ * would otherwise join it on twice (og:image 404s with the prefix doubled).
+ * Canonicals are the other half of that trade: Next does not prefix them, so
+ * they are prefixed here.
+ */
+export const route = (path: string) => `${BASE_PATH}${path}`

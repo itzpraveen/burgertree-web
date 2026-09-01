@@ -3,12 +3,13 @@ import Link from 'next/link'
 import { PageHead } from '@/components/ui/page-head'
 import { Reveal } from '@/components/ui/reveal'
 import { BRAND, CITIES, CONTACT, storesByCity } from '@/data/site'
+import { route } from '@/lib/base-path'
 
 export const metadata: Metadata = {
   title: 'Stores',
   description:
     'Burger Tree outlets: Tharekkad and Olavakkode in Palakkad, R.S. Puram and Race Course in Coimbatore. Addresses, phone numbers and directions.',
-  alternates: { canonical: '/stores' },
+  alternates: { canonical: route('/stores') },
 }
 
 export default function StoresPage() {

@@ -4,7 +4,8 @@ import './globals.css'
 import { SmoothScroll } from '@/components/chrome/smooth-scroll'
 import { SiteHeader } from '@/components/chrome/site-header'
 import { SiteFooter } from '@/components/chrome/site-footer'
-import { BRAND, SITE_URL, STORES } from '@/data/site'
+import { BRAND, SITE_ORIGIN, SITE_URL, STORES } from '@/data/site'
+import { route } from '@/lib/base-path'
 
 const archivo = Archivo({
   variable: '--font-archivo',
@@ -31,7 +32,7 @@ const DESCRIPTION =
   'Burger Tree is slow on purpose. Nothing is cooked until you order it, on buns baked in our own kitchen — so allow 20–25 minutes, or call ahead and it will be ready when you arrive. Four outlets across Palakkad and Coimbatore.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(SITE_ORIGIN),
   title: {
     default: 'Burger Tree — Slow on purpose',
     template: '%s · Burger Tree',
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
   },
   twitter: { card: 'summary_large_image' },
-  alternates: { canonical: '/' },
+  alternates: { canonical: route('/') },
 }
 
 export const viewport: Viewport = {

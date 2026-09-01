@@ -61,6 +61,9 @@ export const BRAND = {
  */
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? BRAND.site
 
+/** Scheme and host of {@link SITE_URL}, with any sub-path dropped. */
+export const SITE_ORIGIN = new URL(SITE_URL).origin
+
 export type Store = {
   id: string
   name: string

@@ -4,12 +4,13 @@ import { PageHead } from '@/components/ui/page-head'
 import { MENU, itemCount } from '@/data/menu'
 import { MenuLegend } from '@/components/menu/marks'
 import { BRAND } from '@/data/site'
+import { route } from '@/lib/base-path'
 
 export const metadata: Metadata = {
   title: 'Menu',
   description:
     'The full Burger Tree menu — chicken, beef, paneer and mushroom burgers, subwiches, burritos, bowls, club sandwiches, loaded fries, milkshakes, mojitos, faloodas and coffee. Palakkad and Coimbatore prices.',
-  alternates: { canonical: '/menu' },
+  alternates: { canonical: route('/menu') },
 }
 
 /**

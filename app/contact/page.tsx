@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import { PageHead } from '@/components/ui/page-head'
 import { Reveal } from '@/components/ui/reveal'
 import { BRAND, CONTACT, STORES } from '@/data/site'
+import { route } from '@/lib/base-path'
 
 export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Call any Burger Tree outlet directly to order, or write to us. Phone numbers for Tharekkad, Olavakkode, R.S. Puram and Race Course.',
-  alternates: { canonical: '/contact' },
+  alternates: { canonical: route('/contact') },
 }
 
 export default function ContactPage() {

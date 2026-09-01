@@ -7,12 +7,13 @@ import { FoodImage } from '@/components/ui/food-image'
 import { Stamp } from '@/components/brand/logo'
 import { BRAND, CONTACT, STORES } from '@/data/site'
 import { allItems } from '@/data/menu'
+import { route } from '@/lib/base-path'
 
 export const metadata: Metadata = {
   title: 'Story',
   description:
     "Burger Tree began as a bakery in Calicut in 1998. That is why the buns are ours, why nothing is frozen, and why every order is cooked from scratch after you place it.",
-  alternates: { canonical: '/story' },
+  alternates: { canonical: route('/story') },
 }
 
 /** Only things the menus and the company's own material actually say. */

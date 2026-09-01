@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { PageHead } from '@/components/ui/page-head'
 import { BRAND, CONTACT } from '@/data/site'
+import { route } from '@/lib/base-path'
 
 export const metadata: Metadata = {
   title: 'Privacy',
   description:
     'What burgertree.in stores about you: one setting, in your own browser. No accounts, no tracking, no cookies.',
-  alternates: { canonical: '/privacy' },
+  alternates: { canonical: route('/privacy') },
   robots: { index: true, follow: true },
 }
 
