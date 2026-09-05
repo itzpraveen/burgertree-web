@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { publishScroll, trackPointer } from '@/lib/scroll-store'
+import { usePrefersReducedMotion } from '@/lib/use-media'
 
 /**
  * Lenis drives the page. It also becomes the single source of scroll truth
@@ -11,8 +12,8 @@ import { publishScroll, trackPointer } from '@/lib/scroll-store'
  * background image" bug on smooth-scrolled 3D sites.
  */
 export function SmoothScroll() {
+  const reduced = usePrefersReducedMotion()
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const stopPointer = trackPointer()
 
     const publishNative = () => {
@@ -27,7 +28,7 @@ export function SmoothScroll() {
       })
     }
 
-    if (reduced) {
+    if (reduced || window.matchMedia('(pointer: coarse)').matches) {
       // No inertia, but the store still needs feeding so the canvas tracks.
       publishNative()
       window.addEventListener('scroll', publishNative, { passive: true })
@@ -85,6 +86,7 @@ export function SmoothScroll() {
     const onClick = (e: MouseEvent) => {
       const a = (e.target as HTMLElement | null)?.closest?.('a[href^="#"]')
       if (!a) return
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
       const id = a.getAttribute('href')!.slice(1)
       if (!id) return
       const el = document.getElementById(id)
@@ -103,7 +105,7 @@ export function SmoothScroll() {
       lenis.destroy()
       stopPointer()
     }
-  }, [])
+  }, [reduced])
 
   return null
 }

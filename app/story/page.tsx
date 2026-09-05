@@ -31,8 +31,8 @@ export default function StoryPage() {
     <>
       <PageHead
         kicker={`${BRAND.tagline} · since ${BRAND.foundedYear}`}
-        title="A bakery that got into burgers"
-        lede="Almost everything strange about the way we work comes from one fact: we started out baking bread, and we never stopped."
+        title="Bakery roots. Burger hearts."
+        lede="A family café in Calicut. A love of good food. A story that began in 1998 and still brings people together over a freshly made meal."
       />
 
       <section className="shell pb-24">
@@ -44,6 +44,7 @@ export default function StoryPage() {
             sizes="100vw"
             priority
             className="rounded-lg"
+            imgClassName="object-[50%_68%]"
           />
         </Reveal>
 
@@ -83,9 +84,9 @@ export default function StoryPage() {
       <section className="shell py-24 lg:py-36">
         <SectionHead
           index={1}
-          kicker="The three refusals"
-          title="What we will not buy in"
-          lede="Every burger chain has to decide which parts of the sandwich it is actually going to make. These are the three we kept."
+          kicker="The Burger Tree way"
+          title="Made here, with care"
+          lede="Our buns, our patties, our recipes. Three things that make every Burger Tree meal feel like ours."
         />
 
         <div className="mt-20 flex flex-col gap-20">

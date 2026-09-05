@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { MenuBrowser } from '@/components/menu/menu-browser'
 import { PageHead } from '@/components/ui/page-head'
-import { MENU, itemCount } from '@/data/menu'
+import { MENU } from '@/data/menu'
 import { MenuLegend } from '@/components/menu/marks'
 import { BRAND } from '@/data/site'
 import { route } from '@/lib/base-path'
@@ -60,11 +60,9 @@ export default function MenuPage() {
   return (
     <>
       <PageHead
-        kicker="Two cities, two price columns"
+        kicker="Burgers n’ beyond"
         title="The menu"
-        lede={`We print two menus. Palakkad runs to ${itemCount('Palakkad')} items, Coimbatore to ${itemCount(
-          'Coimbatore',
-        )}, and the same dish can be ₹50 apart between them. Pick your city and every price below switches to that column. All of them exclude GST.`}
+        lede="Find your favourites, from freshly made burgers to loaded fries, shakes and something sweet. Choose your city to see the local menu and prices. GST is extra."
       >
         <MenuLegend className="mt-10" />
       </PageHead>

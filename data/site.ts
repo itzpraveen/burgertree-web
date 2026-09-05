@@ -32,21 +32,21 @@ export const BRAND = {
       title: 'Fresh Buns',
       note: 'Baked in our own kitchen',
       body:
-        'The bun is the part most burger places buy in by the crate. Ours comes out of our own oven — which is how a bakery in Calicut ends up running a burger house.',
+        'Baked in our own kitchen. Our bakery roots live on in every soft bun, made to bring the whole burger together.',
     },
     {
       initial: 'M',
       title: 'Made to Order',
       note: 'Every patty, every time',
       body:
-        'Nothing sits under a heat lamp waiting for you. Your patty hits the grill after your order reaches the kitchen, which is the entire reason this takes as long as it does.',
+        'Your order is where it starts. We prepare your food freshly upon request, with patties made in our own kitchen.',
     },
     {
       initial: 'S',
       title: 'Secret Recipe',
       note: 'Our own sauces and toppings',
       body:
-        'The mayo, the peri peri, the mint, the BBQ, the Korean base — all mixed in house. It is the part of the menu we will not tell you about.',
+        'Our own recipes, sauces and signature toppings. From the first bite to the last, it’s the little Burger Tree touches that make it yours.',
     },
   ],
 } as const

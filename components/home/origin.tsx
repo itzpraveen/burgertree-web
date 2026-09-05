@@ -1,62 +1,19 @@
 import Link from 'next/link'
 import { Reveal } from '@/components/ui/reveal'
-import { FoodImage } from '@/components/ui/food-image'
 import { BRAND } from '@/data/site'
+import styles from './home.module.css'
 
-/**
- * The origin, told with a number rather than a photograph. There is no
- * archive of the Calicut bakery to show, and a stock picture of a vintage
- * oven would be a lie, so the year does the work.
- */
 export function Origin() {
   return (
-    <section className="relative overflow-hidden border-y border-[var(--line)] bg-char-2">
-      <div className="shell grid gap-16 py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-24 lg:py-40">
-        <div>
-          <Reveal>
-            <p className="ticket text-marigold">The short version</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2
-              className="display-xl mt-8 text-cream"
-              style={{ fontSize: 'clamp(5rem, 16vw, 15rem)' }}
-            >
-              <span className="sr-only">Founded in </span>
-              {BRAND.foundedYear}
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="body-lg mt-8 max-w-lg text-cream-dim">
-              We started in {BRAND.foundedPlace} as a bakery. That one fact
-              explains everything odd about the way we work — why the buns are
-              ours, why nothing is frozen, and why a burger takes about as long
-              as bread does.
-            </p>
-          </Reveal>
-          <Reveal delay={240}>
-            <Link
-              href="/story"
-              className="ticket mt-10 inline-flex items-center gap-3 text-cream transition-colors hover:text-marigold"
-            >
-              Read the long version
-              <span aria-hidden>→</span>
-            </Link>
-          </Reveal>
-        </div>
-
-        <Reveal delay={140}>
-          <figure className="relative">
-            <FoodImage
-              slug="p05_022"
-              alt="A flame grilled beef burger on the pass at Burger Tree"
-              ratio="4 / 5"
-              sizes="(max-width: 1024px) 92vw, 44vw"
-              className="rounded-lg"
-            />
-            <figcaption className="ticket-sm mt-4 text-ash">
-              {BRAND.promise}
-            </figcaption>
-          </figure>
+    <section className={styles.origin} aria-labelledby="origin-title">
+      <div className={`shell ${styles.originGrid}`}>
+        <Reveal>
+          <p className={styles.originYear}>{BRAND.foundedYear}<span>A family bakery. Calicut, Kerala.</span></p>
+        </Reveal>
+        <Reveal delay={120} className={styles.originCopy}>
+          <h2 id="origin-title" className="display-lg">Bakery roots.<br />Burger hearts.</h2>
+          <p className="body-lg">Our story began at a family café and bakery in Calicut. A love of good food brought us here. We still bake our own buns, make our own patties, and bring that same care to your table.</p>
+          <Link href="/story" className="text-link">A little more about us <span aria-hidden>↗</span></Link>
         </Reveal>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Archivo, Archivo_Black, Martian_Mono } from 'next/font/google'
+import { Archivo, Archivo_Black } from 'next/font/google'
 import './globals.css'
 import { SmoothScroll } from '@/components/chrome/smooth-scroll'
 import { SiteHeader } from '@/components/chrome/site-header'
@@ -21,20 +21,13 @@ const archivoBlack = Archivo_Black({
   display: 'swap',
 })
 
-const martian = Martian_Mono({
-  variable: '--font-martian',
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '600'],
-})
-
 const DESCRIPTION =
-  'Burger Tree is slow on purpose. Nothing is cooked until you order it, on buns baked in our own kitchen — so allow 20–25 minutes, or call ahead and it will be ready when you arrive. Four outlets across Palakkad and Coimbatore.'
+  'Burger Tree — Burgers n’ Beyond. Fresh buns, house-made patties and food prepared to order. Explore the menu and find your kitchen in Palakkad or Coimbatore. Bakery roots in Calicut since 1998.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    default: 'Burger Tree — Slow on purpose',
+    default: 'Burger Tree — Burgers n’ Beyond',
     template: '%s · Burger Tree',
   },
   description: DESCRIPTION,
@@ -51,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: BRAND.name,
-    title: 'Burger Tree — Slow on purpose',
+    title: 'Burger Tree — Burgers n’ Beyond',
     description: DESCRIPTION,
     locale: 'en_IN',
   },
@@ -110,7 +103,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en-IN"
-      className={`${archivo.variable} ${archivoBlack.variable} ${martian.variable}`}
+      className={`${archivo.variable} ${archivoBlack.variable}`}
     >
       <body>
         <a href="#main" className="skip-link ticket">

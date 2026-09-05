@@ -45,7 +45,7 @@ const listeners = new Set<Listener>()
 
 export function onScroll(fn: Listener) {
   listeners.add(fn)
-  return () => listeners.delete(fn)
+  return () => { listeners.delete(fn) }
 }
 
 export function publishScroll(next: Partial<ScrollState>) {

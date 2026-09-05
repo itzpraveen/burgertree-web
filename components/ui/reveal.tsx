@@ -49,6 +49,12 @@ export function Reveal({
 
   useEffect(() => {
     if (!ref.current) return
+    // Server-rendered and no-JS content stays readable. Only stage elements
+    // that have not reached the viewport; never hide something being read.
+    if (
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      ref.current.getBoundingClientRect().top > window.innerHeight * 0.92
+    ) ref.current.classList.add('reveal-pending')
     return watch(ref.current)
   }, [])
 

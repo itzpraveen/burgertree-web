@@ -11,13 +11,16 @@ const NAV = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-[var(--line)] bg-olive-deep">
+    <footer className="relative border-t border-[var(--line)] bg-char-2">
+      <Link href="/menu" className="footer-invitation shell">
+        <span>Come hungry.</span><span aria-hidden>↗</span>
+      </Link>
       <div className="shell grid gap-14 py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.6fr)] lg:py-28">
         <div className="flex flex-col gap-8">
           <Logo width={200} />
           <p className="body-base max-w-sm text-cream-dim">
-            {BRAND.promise}. Four kitchens across Palakkad and Coimbatore, all of
-            them slower than they need to be.
+            {BRAND.promise}. From our kitchens in Palakkad and Coimbatore,
+            with love.
           </p>
           <div className="flex flex-col gap-2">
             <a
@@ -80,7 +83,7 @@ export function SiteFooter() {
           <Link href="/privacy" className="ticket-sm text-ash transition-colors hover:text-cream">
             Privacy
           </Link>
-          <Stamp size={54} className="opacity-45" />
+          <Stamp size={54} spin={false} className="opacity-65" />
         </div>
       </div>
     </footer>

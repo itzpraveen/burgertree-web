@@ -207,7 +207,7 @@ export function MenuBrowser() {
                     <ul className="mt-7 grid gap-x-12 gap-y-7 xl:grid-cols-2">
                       {group.items.map((item) => (
                         <li key={item.id}>
-                          <article>
+                          <article id={`item-${item.id}`} className="menu-item">
                             <div className="flex items-baseline gap-3">
                               <DietMark diet={item.diet} className="translate-y-0.5" />
                               <h4 className="display-sm text-cream">{item.name}</h4>

@@ -1,92 +1,46 @@
+'use client'
+
 import { Reveal } from '@/components/ui/reveal'
-import { CONTACT, STORES, WAIT } from '@/data/site'
+import { useCity } from '@/components/city-provider'
+import { CITIES, storesByCity, WAIT } from '@/data/site'
+import styles from './home.module.css'
 
-/**
- * The most useful block on the site.
- *
- * Burger Tree's only consistent complaint is the wait, and the specific
- * failure is people arriving with no idea it was coming. The kitchen cannot
- * be made faster without becoming the thing it refuses to be — but the wait
- * can be moved off the customer's evening entirely. So this is set on the
- * brand colour, sits directly under the hero, and gives every outlet's line
- * plus whatever delivery listing that outlet has.
- */
 export function OrderAhead() {
+  const { city, setCity } = useCity()
   return (
-    <section id="order" className="relative bg-marigold text-char">
-      <div className="shell py-20 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
-          <div>
-            <Reveal>
-              <p className="ticket text-char/75">Do not queue</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="display-lg mt-6 text-char">Order before you leave</h2>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="body-lg mt-7 max-w-md text-char/80">
-                We need {WAIT.label} whether you are standing at the counter or
-                sitting at home. Call the outlet on your way and it will be
-                coming off the grill as you walk in.
-              </p>
-            </Reveal>
+    <section id="order" className={styles.order} aria-labelledby="order-title">
+      <div className={`shell ${styles.orderLayout}`}>
+        <Reveal>
+          <p className="ticket">Your next good meal</p>
+          <h2 id="order-title" className={`display-lg ${styles.orderTitle}`}>You bring<br />the appetite.</h2>
+          <p className={`body-lg ${styles.orderCopy}`}>We’ll take care of the rest. Choose your city, call your kitchen, and let’s get your favourites started.</p>
+          <p className={styles.orderNote}>Fresh to order · Allow {WAIT.label}.<br />Your kitchen can confirm the current wait and pickup time.</p>
+        </Reveal>
+        <div>
+          <div className={styles.orderCitySwitch} role="group" aria-label="Choose a city to order">
+            {CITIES.map((c) => <button type="button" key={c} aria-pressed={city === c} onClick={() => setCity(c)}>{c}</button>)}
           </div>
-
-          <Reveal delay={120}>
-            <ul className="grid gap-px overflow-hidden rounded-lg bg-char/15 sm:grid-cols-2">
-              {STORES.map((s) => (
-                <li key={s.id} className="bg-marigold p-7">
-                  <p className="ticket-sm text-char/75">{s.city}</p>
-                  <p className="display-sm mt-3 text-char">{s.name}</p>
-                  <a
-                    href={`tel:${s.phoneHref}`}
-                    className="num mt-4 block text-lg text-char underline decoration-char/30 underline-offset-4 transition-colors hover:decoration-char"
-                  >
-                    {s.phone}
+          <div aria-live="polite" aria-atomic="true">
+            <ul key={city} className={`${styles.orderList} ${styles.orderKitchens}`} aria-label={`${city} kitchens`}>
+              {storesByCity(city).map((store) => (
+                <li key={store.id} className={styles.orderRow}>
+                  <div className={styles.orderRowTop}>
+                    <h3 className="display-sm">{store.name}</h3>
+                    <span className="ticket-sm">{store.city}</span>
+                  </div>
+                  <a href={`tel:${store.phoneHref}`} className={`${styles.orderPhone} text-link`} aria-label={`Call ${store.name}: ${store.phone}`}>
+                    {store.phone} <span aria-hidden>↗</span>
                   </a>
-                  {s.delivery && (
-                    <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-                      {s.delivery.swiggy && (
-                        <a
-                          href={s.delivery.swiggy}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="ticket-sm text-char/75 transition-colors hover:text-char"
-                        >
-                          Swiggy ↗
-                        </a>
-                      )}
-                      {s.delivery.zomato && (
-                        <a
-                          href={s.delivery.zomato}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="ticket-sm text-char/75 transition-colors hover:text-char"
-                        >
-                          Zomato ↗
-                        </a>
-                      )}
-                    </p>
-                  )}
+                  <div className={styles.orderLinks}>
+                    <a className="text-link" href={store.maps} target="_blank" rel="noreferrer noopener">Directions <span aria-hidden>↗</span></a>
+                    {store.delivery?.swiggy && <a className="text-link" href={store.delivery.swiggy} target="_blank" rel="noreferrer noopener">Swiggy <span aria-hidden>↗</span></a>}
+                    {store.delivery?.zomato && <a className="text-link" href={store.delivery.zomato} target="_blank" rel="noreferrer noopener">Zomato <span aria-hidden>↗</span></a>}
+                  </div>
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
-
-        <Reveal delay={200}>
-          <p className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-char/25 pt-7">
-            <a
-              href={CONTACT.whatsappHref}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="ticket rounded-full bg-char px-6 py-3.5 text-marigold transition-opacity hover:opacity-85"
-            >
-              WhatsApp us
-            </a>
-            <span className="ticket-sm text-char/75">{WAIT.peakNote}</span>
-          </p>
-        </Reveal>
       </div>
     </section>
   )

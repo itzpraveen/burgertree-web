@@ -40,7 +40,8 @@ export function Logo({
         alt="Burger Tree — burgers n' beyond"
         width={width}
         height={height}
-        priority={priority}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         className={clsx('h-auto select-none', className)}
       />
     )
@@ -106,7 +107,7 @@ export function BurgerGlyph({ className, size = 20 }: { className?: string; size
       alt=""
       aria-hidden
       width={size}
-      height={size}
+      height={Math.round(size * 180 / 179)}
       className={clsx('h-auto select-none', className)}
     />
   )
@@ -119,7 +120,7 @@ export function HeartGlyph({ className, size = 20 }: { className?: string; size?
       alt=""
       aria-hidden
       width={size}
-      height={size}
+      height={Math.round(size * 174 / 183)}
       className={clsx('h-auto select-none', className)}
     />
   )

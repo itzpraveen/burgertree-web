@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useSyncExternalStore } from 'react'
+import { useCallback, useRef, useSyncExternalStore } from 'react'
 import { CITIES, type City } from '@/data/site'
 import { clsx } from '@/lib/cx'
 
@@ -71,25 +71,36 @@ export function useCity() {
 /** The segmented control. Used in the menu toolbar and on the home page. */
 export function CitySwitch({ className }: { className?: string }) {
   const { city, setCity } = useCity()
+  const buttons = useRef<(HTMLButtonElement | null)[]>([])
   return (
     <div
       className={clsx(
-        'inline-flex rounded-full border border-[var(--line-strong)] p-1',
+        'city-switch relative isolate inline-grid grid-cols-2 rounded-full border border-[var(--line-strong)] p-1',
         className,
       )}
       role="radiogroup"
       aria-label="Choose your city"
+      onKeyDown={(event) => {
+        if (!['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return
+        event.preventDefault()
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? 1 : city === CITIES[0] ? 1 : 0
+        setCity(CITIES[next])
+        buttons.current[next]?.focus()
+      }}
     >
-      {CITIES.map((c) => (
+      <span aria-hidden className="city-switch-indicator" style={{ transform: `translateX(${city === CITIES[0] ? 0 : 100}%)` }} />
+      {CITIES.map((c, i) => (
         <button
+          ref={(element) => { buttons.current[i] = element }}
           key={c}
           type="button"
           role="radio"
           aria-checked={city === c}
+          tabIndex={city === c ? 0 : -1}
           onClick={() => setCity(c)}
           className={clsx(
-            'ticket rounded-full px-5 py-2.5 transition-colors',
-            city === c ? 'bg-marigold text-char' : 'text-cream-dim hover:text-cream',
+            'ticket relative min-h-11 rounded-full px-5 py-2.5 transition-colors',
+            city === c ? 'text-char' : 'text-cream-dim hover:text-cream',
           )}
         >
           {c}

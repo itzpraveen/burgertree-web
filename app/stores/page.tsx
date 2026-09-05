@@ -18,7 +18,7 @@ export default function StoresPage() {
       <PageHead
         kicker="Four kitchens"
         title="Where to find us"
-        lede="Two in Palakkad, two in Coimbatore. Every outlet cooks to order, so ring the one you are heading to before you set off — the kitchen still needs 20–25 minutes, but it can spend them while you are on your way."
+        lede="Two in Palakkad, two in Coimbatore. Pull up a chair or call ahead for your favourites. Food is prepared to order; your kitchen can confirm the current wait and pickup time."
       />
 
       <div className="shell pb-28">
@@ -29,7 +29,7 @@ export default function StoresPage() {
               <div className="flex flex-wrap items-baseline justify-between gap-4">
                 <h2 className="display-md text-cream">{city}</h2>
                 <p className="ticket-sm text-ash">
-                  {stores.length} outlets · {city} price column
+                  {stores.length} kitchens · Made fresh to order
                 </p>
               </div>
 
@@ -96,7 +96,7 @@ export default function StoresPage() {
         <section className="rule flex flex-col gap-6 py-14 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="ticket-sm text-ash">Anything else</p>
-            <p className="display-sm mt-3 text-cream">
+            <p className="display-sm mt-3 break-all text-cream">
               {CONTACT.email}
             </p>
           </div>

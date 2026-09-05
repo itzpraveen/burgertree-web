@@ -1,42 +1,50 @@
+'use client'
+
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'motion/react'
+import { FoodImage } from '@/components/ui/food-image'
 import { Reveal } from '@/components/ui/reveal'
-import { SectionHead } from '@/components/ui/section-head'
 import { BRAND } from '@/data/site'
+import { usePrefersReducedMotion } from '@/lib/use-media'
+import styles from './home.module.css'
 
-/**
- * F · M · S — the three letters the printed menu sets in a row on page two.
- * They are kept as letters here rather than turned into icons, because on the
- * menu they read like a maker's mark and that is worth preserving.
- */
 export function Pillars() {
-  return (
-    <section id="how" className="shell py-28 lg:py-40">
-      <SectionHead
-        index={1}
-        kicker="How it is made"
-        title="Three things we will not outsource"
-        lede="Most burger places buy the bun, buy the sauce and reheat the patty. These are the three we make ourselves, and between them they account for the whole wait."
-      />
+  const ref = useRef<HTMLElement>(null)
+  const still = usePrefersReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const scale = useTransform(scrollYProgress, [0, 1], [1.02, 1.15])
 
-      <ol className="mt-20 grid gap-px overflow-hidden rounded-lg bg-[var(--line)] md:grid-cols-3">
-        {BRAND.pillars.map((p, i) => (
-          <Reveal as="li" key={p.initial} delay={i * 110} className="bg-char">
-            <div className="flex h-full flex-col gap-6 p-9 lg:p-11">
-              <span
-                className="display-xl leading-none text-marigold"
-                style={{ fontSize: 'clamp(4rem, 7vw, 7rem)' }}
-                aria-hidden
-              >
-                {p.initial}
-              </span>
-              <div className="rule pt-6">
-                <h3 className="display-sm text-cream">{p.title}</h3>
-                <p className="ticket-sm mt-2.5 text-marigold">{p.note}</p>
-              </div>
-              <p className="body-base text-cream-dim">{p.body}</p>
-            </div>
+  return (
+    <section ref={ref} id="how" className={styles.craft} aria-labelledby="craft-title">
+      <div className={`shell ${styles.craftGrid}`}>
+        <figure className={styles.craftPhoto}>
+          <div className={styles.craftPhotoInner}>
+            <motion.div style={{ scale: still ? 1 : scale }}>
+              <FoodImage slug="p05_022" alt="Flame Grill Buff, with a freshly baked bun and Burger Tree’s house toppings" ratio="4 / 5" sizes="(max-width: 700px) 90vw, 44vw" />
+            </motion.div>
+          </div>
+          <figcaption className="ticket-sm"><span>Made here. From the bun up.</span><span>That’s Burger Tree.</span></figcaption>
+        </figure>
+        <div>
+          <Reveal>
+            <p className="ticket">A little more care in every layer</p>
+            <h2 id="craft-title" className={`display-lg ${styles.craftHeading}`}>Good things<br />start here.</h2>
           </Reveal>
-        ))}
-      </ol>
+          <ol className={styles.craftRows}>
+            {BRAND.pillars.map((pillar, i) => (
+              <Reveal as="li" key={pillar.initial} delay={i * 70}>
+                <div className={styles.craftRow}>
+                  <span className={styles.craftLetter} aria-hidden>{pillar.initial}</span>
+                  <div>
+                    <h3 className="display-sm">{pillar.title}</h3>
+                    <p>{pillar.body}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </div>
     </section>
   )
 }

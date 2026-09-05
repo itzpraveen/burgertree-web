@@ -34,13 +34,25 @@ to burgertree.in means dropping `NEXT_PUBLIC_BASE_PATH`, pointing
 Note that `next/image` does **not** apply `basePath` to `src`, and neither does
 a hand-built `srcset`; both go through `asset()` in `lib/base-path.ts`.
 
-## The idea
+## The brand and experience
 
-Burger Tree's own menu says, in capitals, that it is **not** a quick service
-restaurant, and that every order takes 20–25 minutes because nothing is started
-until you ask for it. The site is built around that sentence rather than around
-it: the home page opens on a burger that assembles itself and then, as you
-scroll, comes apart into its eight labelled layers.
+The homepage uses Burger Tree's exact `#FAA227` orange, original stacked logo,
+burger and heart marks, and real menu photography. Its direction comes from
+the [brand's own story](https://www.burgertree.in/about): a family café and
+bakery in Calicut in 1998, buns and patties made in the kitchen, and gathering
+over a good meal. Orange, warm paper, and charcoal carry that story throughout.
+
+The page leads with the brand and food, then explains the kitchen's three
+pillars and bakery roots. The 20–25 minute preparation time remains visible in
+the hero and ordering section. City selection is shared between featured
+prices, the full menu, and the order-ahead kitchen directory. Featured dishes
+link directly to their entries in the menu.
+
+Motion includes a staged hero entrance, scroll-linked photography and stamp,
+a pausable brand ticker, section reveals, a sliding city selector, and mobile
+navigation and link transitions. Reduced-motion preferences are respected;
+touch devices use native scrolling. Content remains visible without JavaScript,
+and the mobile navigation uses a native modal dialog for focus and Escape.
 
 ## Where the content comes from
 
@@ -66,7 +78,7 @@ app/                 routes; all static
   layout.tsx         fonts, metadata, Organization + Restaurant JSON-LD
   menu/              the browser (city, diet filter, search) + Menu JSON-LD
 components/
-  webgl/             the react-three-fiber burger
+  webgl/             retained procedural burger experiment (not mounted)
   home/ menu/ ui/    page sections and primitives
   chrome/            header, footer, Lenis smooth scroll
 data/
@@ -78,7 +90,11 @@ lib/
   scroll-store.ts    scroll state outside React, read per frame by the canvas
 ```
 
-## The burger
+## The retained WebGL experiment
+
+The current homepage leads with authentic food photography. The earlier
+procedural burger modules remain available for a future dedicated experience,
+but are not imported or downloaded by the homepage.
 
 `lib/burger-geometry.ts` builds all eight layers out of three.js primitives and
 then displaces every vertex with value noise, so there is no model to download
