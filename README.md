@@ -37,7 +37,9 @@ a hand-built `srcset`; both go through `asset()` in `lib/base-path.ts`.
 ## The brand and experience
 
 The homepage uses Burger Tree's exact `#FAA227` orange, original stacked logo,
-burger and heart marks, and real menu photography. Its direction comes from
+burger and heart marks, and menu photography. The hero features a background
+edit of the brand's Smokey Chick photo; [image provenance and prompts](docs/hero-image.md)
+document that treatment. Its direction comes from
 the [brand's own story](https://www.burgertree.in/about): a family café and
 bakery in Calicut in 1998, buns and patties made in the kitchen, and gathering
 over a good meal. Orange, warm paper, and charcoal carry that story throughout.
@@ -48,7 +50,7 @@ the hero and ordering section. City selection is shared between featured
 prices, the full menu, and the order-ahead kitchen directory. Featured dishes
 link directly to their entries in the menu.
 
-Motion includes a staged hero entrance, scroll-linked photography and stamp,
+Motion includes a staged headline and product entrance, scroll-linked photography,
 a pausable brand ticker, section reveals, a sliding city selector, and mobile
 navigation and link transitions. Reduced-motion preferences are respected;
 touch devices use native scrolling. Content remains visible without JavaScript,
